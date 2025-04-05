@@ -1,0 +1,50 @@
+﻿@model SC_601_PA_G5_M.Models.Taller.CitaTaller
+
+@{
+    ViewBag.Title = "Detalles Cita";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles Cita</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <i class="fa-regular fa-user"></i> @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+        </dd>
+
+        <dt>
+            <i class="fa-regular fa-calendar"></i> @Html.DisplayNameFor(model => model.FechaCita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCita)
+        </dd>
+
+        <dt>
+            <i class="fa-regular fa-comments"></i> @Html.DisplayNameFor(model => model.DescripcionServicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionServicio)
+        </dd>
+
+        <dt>
+            <i class="fa-regular fa-comment"></i> @Html.DisplayNameFor(model => model.EstadoCita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCita)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCita }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-secondary" })
+</p>

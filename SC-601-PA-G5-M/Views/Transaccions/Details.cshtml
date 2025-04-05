@@ -1,0 +1,51 @@
+﻿@model SC_601_PA_G5_M.Models.Contabilidad.Transaccion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaTransaccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaTransaccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTransaccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTransaccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionTransaccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionTransaccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoTransaccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoTransaccion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdTransaccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

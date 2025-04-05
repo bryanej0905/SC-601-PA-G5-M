@@ -1,0 +1,51 @@
+﻿@model SC_601_PA_G5_M.Models.Empleados.Empleado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoEmpleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoEmpleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaContratacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaContratacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEmpleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

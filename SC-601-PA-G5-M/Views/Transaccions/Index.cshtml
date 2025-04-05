@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SC_601_PA_G5_M.Models.Contabilidad.Transaccion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaTransaccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTransaccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionTransaccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MontoTransaccion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaTransaccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTransaccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionTransaccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoTransaccion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdTransaccion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdTransaccion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdTransaccion })
+        </td>
+    </tr>
+}
+
+</table>

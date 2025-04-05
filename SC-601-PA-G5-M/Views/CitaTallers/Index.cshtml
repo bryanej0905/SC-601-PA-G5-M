@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SC_601_PA_G5_M.Models.Taller.CitaTaller>
+
+@{
+    ViewBag.Title = "Servicio Taller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .tabla-blanca th,
+    .tabla-blanca td,
+    .tabla-blanca a,
+    .tabla-blanca i {
+        color: white !important;
+    }
+
+    .tabla-blanca {
+        background-color: transparent; /* o un fondo oscuro si lo deseas */
+    }
+
+        .tabla-blanca th {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tabla-blanca td {
+            border-top: 1px solid #444;
+        }
+</style>
+
+<h2>Taller Moto Llantas Virtual</h2>
+
+<p>
+    @Html.ActionLink("Agendar Cita", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table tabla-blanca">
+    <tr>
+        <th>
+            <i class="fa-regular fa-user"></i> @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </th>
+        <th>
+            <i class="fa-regular fa-calendar"></i> @Html.DisplayNameFor(model => model.FechaCita)
+        </th>
+        <th>
+            <i class="fa-regular fa-comments"></i> @Html.DisplayNameFor(model => model.DescripcionServicio)
+        </th>
+        <th>
+            <i class="fa-regular fa-comment"></i> @Html.DisplayNameFor(model => model.EstadoCita)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionServicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCita)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdCita }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdCita }, new { @class = "btn btn-dark" }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCita }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
