@@ -1,16 +1,37 @@
-﻿@model IEnumerable<SC_601_PA_G5_M.Models.Producto>
+﻿@model IEnumerable<SC_601_PA_G5_M.Models.Ventas.Producto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    .tabla-blanca th,
+    .tabla-blanca td,
+    .tabla-blanca a,
+    .tabla-blanca i {
+        color: white !important;
+    }
+
+    .tabla-blanca {
+        background-color: transparent; /* o un fondo oscuro si lo deseas */
+    }
+
+        .tabla-blanca th {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tabla-blanca td {
+            border-top: 1px solid #444;
+        }
+</style>
+
+<h2>Productos Taller</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Producto", "Create", null, new { @class = "btn btn-primary"})
 </p>
-<table class="table">
+<table class="table tabla-blanca">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NombreProducto)
@@ -42,9 +63,9 @@
             @Html.DisplayFor(modelItem => item.Existencias)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdProducto }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdProducto })
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdProducto }, new { @class = "btn btn-info"}) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdProducto }, new { @class = "btn btn-dark" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdProducto }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

@@ -1,14 +1,13 @@
-﻿@model SC_601_PA_G5_M.Models.Producto
+﻿@model SC_601_PA_G5_M.Models.Ventas.Producto
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles Producto</h2>
 
 <div>
-    <h4>Producto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProducto }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdProducto }, new { @class = "btn btn-primary"}) |
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-secondary"})
 </p>

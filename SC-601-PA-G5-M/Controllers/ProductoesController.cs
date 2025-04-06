@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SC_601_PA_G5_M.Models;
+using SC_601_PA_G5_M.Models.Ventas;
 
 namespace SC_601_PA_G5_M.Controllers
 {
     public class ProductoesController : BaseController
     {
-        private PAContext db = new PAContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Productoes
         public ActionResult Index()
         {
-            return View(db.Producto.ToList());
+            return View(db.Productoes.ToList());
         }
 
         // GET: Productoes/Details/5
@@ -27,7 +28,7 @@ namespace SC_601_PA_G5_M.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace SC_601_PA_G5_M.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Producto.Add(producto);
+                db.Productoes.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace SC_601_PA_G5_M.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -96,7 +97,7 @@ namespace SC_601_PA_G5_M.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = db.Productoes.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -109,8 +110,8 @@ namespace SC_601_PA_G5_M.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Producto.Find(id);
-            db.Producto.Remove(producto);
+            Producto producto = db.Productoes.Find(id);
+            db.Productoes.Remove(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

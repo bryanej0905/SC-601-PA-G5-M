@@ -83,7 +83,10 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("🛠️ Taller", "Index", "CitaTallers", new { area = "" }, new { @class = "nav-link" })
+                            <div class="d-flex">
+                                @Html.ActionLink("🛠️ Taller", "Index", "CitaTallers", new { area = "" }, new { @class = "nav-link" })
+                                @Html.ActionLink("Productos", "Index", "Productoes", new { area = "" }, new { @class = "nav-link" })
+                            </div>
                         </li>
                     }
                 </ul>

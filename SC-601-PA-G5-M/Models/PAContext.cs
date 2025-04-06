@@ -6,6 +6,7 @@ using System.Web;
 using SC_601_PA_G5_M.Models.Contabilidad;
 using SC_601_PA_G5_M.Models.Empleados;
 using SC_601_PA_G5_M.Models.Taller;
+using SC_601_PA_G5_M.Models.Ventas;
 
 namespace SC_601_PA_G5_M.Models
 {

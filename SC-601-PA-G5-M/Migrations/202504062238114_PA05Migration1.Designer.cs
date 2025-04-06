@@ -6,14 +6,14 @@ namespace SC_601_PA_G5_M.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Inicial : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
+    public sealed partial class PA05Migration1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Inicial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PA05Migration1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202504030047256_Inicial"; }
+            get { return "202504062238114_PA05Migration1"; }
         }
         
         string IMigrationMetadata.Source

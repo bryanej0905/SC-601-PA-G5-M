@@ -17,6 +17,12 @@ namespace SC_601_PA_G5_M.Models
         // 👇 Aquí agregás tus modelos personalizados, como CitaTaller
         public DbSet<CitaTaller> CitaTaller { get; set; }
 
+        public System.Data.Entity.DbSet<SC_601_PA_G5_M.Models.Pedido> Pedidoes { get; set; }
+
+        public System.Data.Entity.DbSet<SC_601_PA_G5_M.Models.DetallePedido> DetallePedidoes { get; set; }
+
+        public System.Data.Entity.DbSet<SC_601_PA_G5_M.Models.Ventas.Producto> Productoes { get; set; }
+
         // ❌ NO agregues manualmente DbSet<IdentityUserLogin> ni DbSet<IdentityUserRole>
     }
 }

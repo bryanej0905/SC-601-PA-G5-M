@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -16,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Pedido.EstadoPedido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Producto.NombreProducto)
+            @Html.DisplayNameFor(model => model.Producto.UsuarioId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
@@ -33,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Pedido.EstadoPedido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Producto.NombreProducto)
+            @Html.DisplayFor(modelItem => item.Producto.UsuarioId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cantidad)

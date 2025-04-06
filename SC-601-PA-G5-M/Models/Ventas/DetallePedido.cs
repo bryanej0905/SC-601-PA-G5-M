@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using SC_601_PA_G5_M.Models.Ventas;
 
 namespace SC_601_PA_G5_M.Models
 {

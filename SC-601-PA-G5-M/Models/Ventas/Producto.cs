@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SC_601_PA_G5_M.Models
+namespace SC_601_PA_G5_M.Models.Ventas
 {
     public class Producto
     {
