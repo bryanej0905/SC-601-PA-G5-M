@@ -1,0 +1,65 @@
+﻿@model SC_601_PA_G5_M.Models.Contabilidad.TransaccionContable
+
+@{
+    ViewBag.Title = "Detalles Transacción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la Transacción</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <i class="fa-regular fa-calendar"></i> @Html.DisplayNameFor(model => model.FechaTransaccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaTransaccion)
+        </dd>
+
+        <dt>
+            <i class="fa-solid fa-tag"></i> @Html.DisplayNameFor(model => model.TipoTransaccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoTransaccion)
+        </dd>
+
+        <dt>
+            <i class="fa-solid fa-dollar-sign"></i> @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            <i class="fa-regular fa-file-lines"></i> @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        @if (Model.CitaTaller != null)
+        {
+            <dt>
+                <i class="fa-regular fa-bookmark"></i> @Html.DisplayNameFor(model => model.CitaTaller)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CitaTaller.DescripcionServicio)
+            </dd>
+        }
+
+        @if (Model.Producto != null)
+        {
+            <dt>
+                <i class="fa-solid fa-box"></i> @Html.DisplayNameFor(model => model.Producto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Producto.NombreProducto)
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdTransaccion }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-secondary" })
+</p>

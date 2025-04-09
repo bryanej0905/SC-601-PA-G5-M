@@ -277,7 +277,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
-    <Compile Include="Controllers\TransaccionsController.cs" />
+    <Compile Include="Controllers\TransaccionesContablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,10 +289,18 @@
     <Compile Include="Migrations\202504062238114_PA05Migration1.Designer.cs">
       <DependentUpon>202504062238114_PA05Migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504091911213_AddTransaccionesContables.cs" />
+    <Compile Include="Migrations\202504091911213_AddTransaccionesContables.Designer.cs">
+      <DependentUpon>202504091911213_AddTransaccionesContables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504091948500_AjusteDecimal.cs" />
+    <Compile Include="Migrations\202504091948500_AjusteDecimal.Designer.cs">
+      <DependentUpon>202504091948500_AjusteDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Contabilidad\Transaccion.cs" />
+    <Compile Include="Models\Contabilidad\TransaccionContable.cs" />
     <Compile Include="Models\Empleados\Empleado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -383,11 +391,6 @@
     <Content Include="Views\CitaTallers\Details.cshtml" />
     <Content Include="Views\CitaTallers\Edit.cshtml" />
     <Content Include="Views\CitaTallers\Index.cshtml" />
-    <Content Include="Views\Transaccions\Create.cshtml" />
-    <Content Include="Views\Transaccions\Delete.cshtml" />
-    <Content Include="Views\Transaccions\Details.cshtml" />
-    <Content Include="Views\Transaccions\Edit.cshtml" />
-    <Content Include="Views\Transaccions\Index.cshtml" />
     <Content Include="Views\Empleadoes\Create.cshtml" />
     <Content Include="Views\Empleadoes\Delete.cshtml" />
     <Content Include="Views\Empleadoes\Details.cshtml" />
@@ -408,10 +411,16 @@
     <Content Include="Views\Productoes\Details.cshtml" />
     <Content Include="Views\Productoes\Edit.cshtml" />
     <Content Include="Views\Productoes\Index.cshtml" />
+    <Content Include="Views\TransaccionesContables\Index.cshtml" />
+    <Content Include="Views\TransaccionesContables\Create.cshtml" />
+    <Content Include="Views\TransaccionesContables\Edit.cshtml" />
+    <Content Include="Views\TransaccionesContables\Details.cshtml" />
+    <Content Include="Views\TransaccionesContables\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -446,6 +455,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504062238114_PA05Migration1.resx">
       <DependentUpon>202504062238114_PA05Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504091911213_AddTransaccionesContables.resx">
+      <DependentUpon>202504091911213_AddTransaccionesContables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504091948500_AjusteDecimal.resx">
+      <DependentUpon>202504091948500_AjusteDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

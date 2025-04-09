@@ -21,6 +21,6 @@ namespace SC_601_PA_G5_M.Models
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<CitaTaller> CitaTaller { get; set; }
         public DbSet<Empleado> Empleado { get; set; }
-        public DbSet<Transaccion> Transaccion { get; set; }
+        public DbSet<TransaccionContable> TransaccionesContables { get; set; }
     }
 }

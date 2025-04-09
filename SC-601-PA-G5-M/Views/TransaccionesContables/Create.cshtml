@@ -1,0 +1,105 @@
+﻿@model SC_601_PA_G5_M.Models.Contabilidad.TransaccionContable
+
+@{
+    ViewBag.Title = "Crear Registro Contable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Crear Registro Contable</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaTransaccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaTransaccion, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.FechaTransaccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoTransaccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TipoTransaccion, htmlAttributes: new { @class = "form-control", id = "tipoTransaccion" })
+                @Html.ValidationMessageFor(model => model.TipoTransaccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = 3 })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="divCitaTaller">
+            @Html.LabelFor(model => model.CitaTallerId, "Cita Taller", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CitaTallerId", null, "-- Seleccione una Cita --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CitaTallerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="divProducto">
+            @Html.LabelFor(model => model.ProductoId, "Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductoId", null, "-- Seleccione un Producto --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>// Script para mostrar/ocultar campos dependiendo del tipo de transacción
+        $(document).ready(function () {
+            function updateFormFields() {
+                var tipoSeleccionado = $("#tipoTransaccion").val();
+
+                if (tipoSeleccionado === '0') { // IngresoServicio
+                    $("#divCitaTaller").show();
+                    $("#divProducto").hide();
+                    $("#ProductoId").val('');
+                }
+                else if (tipoSeleccionado === '1') { // IngresoVenta
+                    $("#divCitaTaller").hide();
+                    $("#divProducto").show();
+                    $("#CitaTallerId").val('');
+                }
+                else { // Otro tipo
+                    $("#divCitaTaller").hide();
+                    $("#divProducto").hide();
+                    $("#CitaTallerId").val('');
+                    $("#ProductoId").val('');
+                }
+            }
+
+            // Ejecutar al cargar y cuando cambia el valor
+            updateFormFields();
+            $("#tipoTransaccion").change(updateFormFields);
+        });</script>
+}

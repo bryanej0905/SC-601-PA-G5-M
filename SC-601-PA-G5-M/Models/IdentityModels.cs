@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SC_601_PA_G5_M.Models.Contabilidad;
 using SC_601_PA_G5_M.Models.Taller;
 using System.Data.Entity;
 
@@ -22,6 +23,8 @@ namespace SC_601_PA_G5_M.Models
         public System.Data.Entity.DbSet<SC_601_PA_G5_M.Models.DetallePedido> DetallePedidoes { get; set; }
 
         public System.Data.Entity.DbSet<SC_601_PA_G5_M.Models.Ventas.Producto> Productoes { get; set; }
+
+        public DbSet<TransaccionContable> TransaccionesContables { get; set; }
 
         // ❌ NO agregues manualmente DbSet<IdentityUserLogin> ni DbSet<IdentityUserRole>
     }
