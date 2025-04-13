@@ -1,9 +1,9 @@
-﻿namespace SC_601_PA_G5_M.Migrations
+﻿namespace SC_601_PA_G5_M.IdentityMigrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class PA05Migration : DbMigration
+    public partial class pa : DbMigration
     {
         public override void Up()
         {
@@ -85,15 +85,12 @@
                 c => new
                     {
                         IdProducto = c.Int(nullable: false, identity: true),
-                        UsuarioId = c.String(maxLength: 128),
                         NombreProducto = c.String(nullable: false, maxLength: 100),
                         DescripcionProducto = c.String(nullable: false, maxLength: 100),
                         PrecioProducto = c.Double(nullable: false),
                         Existencias = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.IdProducto)
-                .ForeignKey("dbo.AspNetUsers", t => t.UsuarioId)
-                .Index(t => t.UsuarioId);
+                .PrimaryKey(t => t.IdProducto);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -105,24 +102,45 @@
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.TransaccionContables",
+                c => new
+                    {
+                        IdTransaccion = c.Int(nullable: false, identity: true),
+                        FechaTransaccion = c.DateTime(nullable: false),
+                        TipoTransaccion = c.Int(nullable: false),
+                        Monto = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Descripcion = c.String(maxLength: 500),
+                        CitaTallerId = c.Int(),
+                        ProductoId = c.Int(),
+                    })
+                .PrimaryKey(t => t.IdTransaccion)
+                .ForeignKey("dbo.CitaTallers", t => t.CitaTallerId)
+                .ForeignKey("dbo.Productoes", t => t.ProductoId)
+                .Index(t => t.CitaTallerId)
+                .Index(t => t.ProductoId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.TransaccionContables", "ProductoId", "dbo.Productoes");
+            DropForeignKey("dbo.TransaccionContables", "CitaTallerId", "dbo.CitaTallers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Productoes", "UsuarioId", "dbo.AspNetUsers");
             DropForeignKey("dbo.CitaTallers", "UsuarioId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropIndex("dbo.TransaccionContables", new[] { "ProductoId" });
+            DropIndex("dbo.TransaccionContables", new[] { "CitaTallerId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Productoes", new[] { "UsuarioId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.CitaTallers", new[] { "UsuarioId" });
+            DropTable("dbo.TransaccionContables");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Productoes");
             DropTable("dbo.AspNetUserRoles");

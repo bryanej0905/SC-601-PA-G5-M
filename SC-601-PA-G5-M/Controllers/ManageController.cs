@@ -55,23 +55,77 @@ namespace SC_601_PA_G5_M.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Tu contraseña fue cambiada exitosamente."
+                : message == ManageMessageId.SetPasswordSuccess ? "Tu contraseña fue establecida."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Se configuró la autenticación en dos pasos."
+                : message == ManageMessageId.Error ? "Ocurrió un error."
+                : message == ManageMessageId.AddPhoneSuccess ? "Tu número fue agregado."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Tu número fue eliminado."
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = await userManager.FindByIdAsync(userId);
+            var roles = await userManager.GetRolesAsync(userId);
+
+            ViewBag.UsuarioNombre = user.Nombre;
+            ViewBag.UsuarioEmail = user.Email;
+            ViewBag.UsuarioTelefono = user.PhoneNumber ?? "No registrado";
+            ViewBag.UsuarioRol = roles.FirstOrDefault() ?? "Sin Rol";
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                Logins = await UserManager.GetLoginsAsync(userId),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult EditarInformacion()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
+
+            var model = new EditarInformacionViewModel
+            {
+                Nombre = user.Nombre,
+                Email = user.Email,
+                Telefono = user.PhoneNumber
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarInformacion(EditarInformacionViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
+
+            user.Nombre = model.Nombre;
+            user.Email = model.Email;
+            user.UserName = model.Email; // Asegurás que UserName siga el correo
+            user.PhoneNumber = model.Telefono;
+
+            var result = UserManager.Update(user);
+
+            if (result.Succeeded)
+                return RedirectToAction("Index", new { Message = ManageMessageId.EditProfileSuccess });
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+
             return View(model);
         }
 
@@ -381,7 +435,8 @@ namespace SC_601_PA_G5_M.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            EditProfileSuccess
         }
 
 #endregion

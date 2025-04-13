@@ -1,9 +1,40 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Acerca de";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
+<style>
+    .about-section {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #f8f9fa;
+        padding: 30px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        font-size: 1.1em;
+        line-height: 1.7;
+    }
+
+        .about-section h2 {
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+</style>
+
+<main aria-labelledby="title">
+    <div class="about-section">
+        <h2 id="title">@ViewBag.Title</h2>
+
+        <p>
+            Moto Llantas Virtual es un taller especializado en la venta de implementos de seguridad, repuestos,
+            llantas, insumos y todo lo necesario para los motociclistas. Su compromiso con la seguridad y el 
+            rendimiento de cada cliente lo ha convertido en una referencia confiable para quienes buscan mantener
+            sus motocicletas en óptimas condiciones. Más que un punto de venta, el taller se ha enfocado en ofrecer
+            una experiencia integral, brindando asesoría personalizada, productos de calidad y soluciones prácticas
+            para el mantenimiento preventivo y correctivo de motocicletas. Gracias a su enfoque en el cliente y al 
+            conocimiento técnico de su equipo, Moto Llantas Virtual se posiciona como un aliado esencial en la ruta 
+            diaria de cada motociclista, promoviendo la cultura del manejo responsable y el uso de equipo adecuado 
+            para cada trayecto.
+        </p>
+    </div>
 </main>

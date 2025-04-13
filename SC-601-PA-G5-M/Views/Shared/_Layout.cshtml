@@ -57,6 +57,20 @@
     </style>
 </head>
 <body>
+    @using Microsoft.AspNet.Identity
+    @using Microsoft.AspNet.Identity.Owin
+
+    @{
+        var roles = new List<string>();
+
+        if (Request.IsAuthenticated)
+        {
+            var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var userId = User.Identity.GetUserId();
+            roles = userManager.GetRoles(userId).ToList();
+        }
+    }
+
     <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container">
             <a href="@Url.Action("Index", "Home")" class="navbar-brand d-flex align-items-center">
@@ -72,29 +86,32 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                     <li class="nav-item">
-                        @Html.ActionLink("🏠 Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("ℹ️ About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("📞 Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("🏠Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
                             <div class="d-flex">
-                                @Html.ActionLink("🛠️ Taller", "Index", "CitaTallers", new { area = "" }, new { @class = "nav-link" })
-                                @Html.ActionLink("Productos", "Index", "Productoes", new { area = "" }, new { @class = "nav-link" })
-                                @Html.ActionLink("Contabilidad", "Index", "TransaccionesContables")
-                        <!-- Agrega donde están los demás enlaces de navegación -->
-                        {
+                                @Html.ActionLink("🛠️Taller", "Index", "CitaTallers", new { area = "" }, new { @class = "nav-link" })
+                                @Html.ActionLink("📦Productos", "Index", "Productoes", new { area = "" }, new { @class = "nav-link" })
 
-                        }
+                                @if (roles.Contains("Admin"))
+                                {
 
-</div>
+                                    @Html.ActionLink("📊Contabilidad", "Index", "TransaccionesContables", new { area = "" }, new { @class = "nav-link" })
+                                    @Html.ActionLink("👥Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link" })
+
+                                }
+                            </div>
                         </li>
                     }
+                    <li class="nav-item">
+                        @Html.ActionLink("ℹ️About", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("📞Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

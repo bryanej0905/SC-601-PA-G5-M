@@ -1,0 +1,89 @@
+﻿@model SC_601_PA_G5_M.Models.Usuarios.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .card-eliminar {
+        background: rgba(0, 0, 0, 0.6);
+        color: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+        .card-eliminar h4 {
+            color: #ffc107;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .card-eliminar dt {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+    .btn-eliminar {
+        background-color: #dc3545;
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: none;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .btn-eliminar:hover {
+            background-color: #c82333;
+            color: #fff;
+        }
+
+    .btn-cancelar {
+        background-color: #6c757d;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+        .btn-cancelar:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="card-eliminar">
+    <h4>¿Está seguro que desea eliminar este usuario?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Usuario:</dt>
+        <dd>@Html.DisplayFor(model => model.Usuario)</dd>
+
+        <dt>Nombre:</dt>
+        <dd>@Html.DisplayFor(model => model.Nombre)</dd>
+
+        <dt>Correo electrónico:</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>Teléfono:</dt>
+        <dd>@Html.DisplayFor(model => model.Telefono)</dd>
+
+        <dt>Rol:</dt>
+        <dd>@Html.DisplayFor(model => model.Rol)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mt-4">
+            <input type="submit" value="Eliminar" class="btn-eliminar" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn-cancelar" })
+        </div>
+    }
+</div>

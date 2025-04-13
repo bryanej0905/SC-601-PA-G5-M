@@ -1,89 +1,96 @@
 ﻿@model SC_601_PA_G5_M.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Mi Cuenta";
 }
 
+<style>
+    .card-info {
+        background: rgba(0, 0, 0, 0.6); /* semi-transparente oscuro */
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 30px;
+        color: #f8f9fa;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+        .card-info h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .card-info dl dt {
+            font-weight: bold;
+            color: #dddddd;
+        }
+
+        .card-info dl dd {
+            margin-bottom: 12px;
+            color: #e0e0e0;
+        }
+
+    .btn-contraseña {
+        background-color: #ffc107;
+        color: #000;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: none;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .btn-contraseña:hover {
+            background-color: #e0a800;
+            color: #000;
+        }
+</style>
+
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
+    <h2 id="title" class="text-light">@ViewBag.Title</h2>
 
     <p class="text-success">@ViewBag.StatusMessage</p>
-    <div>
-        <h4>Change your account settings</h4>
-        <hr />
+    <div class="text-end mt-2">
+        <a href="@Url.Action("EditarInformacion", "Manage")" class="btn btn-outline-light">
+            <i class="fas fa-user-edit"></i> Editar información
+        </a>
+    </div>
+    <div class="card-info">
+        <h4>Información del usuario</h4>
         <dl class="dl-horizontal">
-            <dt>Password:</dt>
+            <dt>Nombre:</dt>
+            <dd>@ViewBag.UsuarioNombre</dd>
+
+            <dt>Email:</dt>
+            <dd>@ViewBag.UsuarioEmail</dd>
+
+            <dt>Teléfono:</dt>
+            <dd>@ViewBag.UsuarioTelefono</dd>
+
+            <dt>Rol:</dt>
+            <dd>@ViewBag.UsuarioRol</dd>
+        </dl>
+    </div>
+
+    <div>
+        <h4 class="text-light">Cambiar contraseña</h4>
+        <hr />
+        <dl class="dl-horizontal text-light">
+            <dt>Contraseña:</dt>
+            <br />
             <dd>
-                [
                 @if (Model.HasPassword)
                 {
-                    @Html.ActionLink("Change your password", "ChangePassword")
+                    <a href="@Url.Action("ChangePassword")" class="btn-contraseña">Cambiar contraseña</a>
                 }
                 else
                 {
-                    @Html.ActionLink("Create", "SetPassword")
+                    <a href="@Url.Action("SetPassword")" class="btn-contraseña">Crear contraseña</a>
                 }
-                ]
             </dd>
-            <dt>External Logins:</dt>
-            <dd>
-                @Model.Logins.Count [
-                @Html.ActionLink("Manage", "ManageLogins") ]
-            </dd>
-            @*
-                Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                
-                See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                    for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                
-                Uncomment the following block after you have set up two-factor authentication
-            *@
-            @*  
-                <dt>Phone Number:</dt>
-                <dd>
-                    @(Model.PhoneNumber ?? "None")
-                    @if (Model.PhoneNumber != null)
-                    {
-                        <br />
-                        <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                        }
-                    }
-                    else
-                    {
-                        <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                    }
-                </dd>
-            *@
-            <dt>Two-Factor Authentication:</dt>
-            <dd>
-                <p>
-                    There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                    for details on setting up this ASP.NET application to support two-factor authentication.
-                </p>
-                @*@if (Model.TwoFactor)
-                    {
-                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <text>Enabled
-                            <input type="submit" value="Disable" class="btn btn-link" />
-                            </text>
-                        }
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <text>Disabled
-                            <input type="submit" value="Enable" class="btn btn-link" />
-                            </text>
-                        }
-                    }*@
-            </dd>
+
+
         </dl>
     </div>
 </main>

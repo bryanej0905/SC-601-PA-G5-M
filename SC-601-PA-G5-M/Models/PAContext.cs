@@ -15,10 +15,7 @@ namespace SC_601_PA_G5_M.Models
         public PAContext() : base("name=PA05")
         { }
 
-        public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Producto> Producto { get; set; }
-        public DbSet<DetallePedido> DetallePedido { get; set; }
-        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<CitaTaller> CitaTaller { get; set; }
         public DbSet<Empleado> Empleado { get; set; }
         public DbSet<TransaccionContable> TransaccionesContables { get; set; }

@@ -1,0 +1,107 @@
+﻿@model SC_601_PA_G5_M.Models.Usuarios.Usuarios
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .card-editar {
+        background: rgba(0, 0, 0, 0.6);
+        color: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+        .card-editar h4 {
+            color: #ffc107;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+    .btn-guardar {
+        background-color: #ffc107;
+        color: #000;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: none;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .btn-guardar:hover {
+            background-color: #e0a800;
+            color: #000;
+        }
+
+    .btn-cancelar {
+        background-color: #6c757d;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+        .btn-cancelar:hover {
+            background-color: #5a6268;
+        }
+
+    label {
+        color: #fff;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card-editar">
+        <h4>Editar información del usuario</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Usuario)
+            @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Email)
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.Telefono)
+            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-4">
+            @Html.LabelFor(model => model.Rol)
+            @Html.DropDownListFor(model => model.Rol, (SelectList)ViewBag.Roles, new { @class = "form-control" })
+        </div>
+
+        <div>
+            <input type="submit" value="Guardar cambios" class="btn-guardar" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn-cancelar" })
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

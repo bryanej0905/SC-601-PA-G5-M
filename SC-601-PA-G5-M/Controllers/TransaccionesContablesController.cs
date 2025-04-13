@@ -8,7 +8,7 @@ using SC_601_PA_G5_M.Models.Contabilidad;
 
 namespace SC_601_PA_G5_M.Controllers
 {
-    [Authorize(Roles = "Admin")] // Solo administradores pueden acceder
+    [Authorize(Roles = "Admin")] 
     public class TransaccionesContablesController : BaseController
     {
         // GET: TransaccionesContables

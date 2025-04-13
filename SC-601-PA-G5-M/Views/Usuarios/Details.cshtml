@@ -1,0 +1,78 @@
+﻿@model SC_601_PA_G5_M.Models.Usuarios.Usuarios
+
+@{
+    ViewBag.Title = "Detalle de usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .card-detalle {
+        background: rgba(0, 0, 0, 0.6);
+        color: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+        .card-detalle dt {
+            color: #ffc107;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+    .btn-volver {
+        background-color: #6c757d;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+        .btn-volver:hover {
+            background-color: #5a6268;
+        }
+
+    .btn-editar {
+        background-color: #ffc107;
+        color: #000;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-editar:hover {
+            background-color: #e0a800;
+            color: #000;
+        }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="card-detalle">
+    <h4>Información del usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Usuario:</dt>
+        <dd>@Html.DisplayFor(model => model.Usuario)</dd>
+
+        <dt>Nombre:</dt>
+        <dd>@Html.DisplayFor(model => model.Nombre)</dd>
+
+        <dt>Correo electrónico:</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>Teléfono:</dt>
+        <dd>@Html.DisplayFor(model => model.Telefono)</dd>
+
+        <dt>Rol:</dt>
+        <dd>@Html.DisplayFor(model => model.Rol)</dd>
+    </dl>
+</div>
+
+<div class="mt-4">
+    @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.Id }, new { @class = "btn-editar" })
+    @Html.ActionLink("↩️ Volver a la lista", "Index", null, new { @class = "btn-volver" })
+</div>

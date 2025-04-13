@@ -1,19 +1,79 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contacto";
 }
+
+<style>
+    .contact-card {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 30px;
+        border-radius: 12px;
+        color: #f8f9fa;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+
+        .contact-card h2 {
+            color: #ffc107;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+    .contact-item {
+        margin-bottom: 15px;
+        font-size: 1.1em;
+    }
+
+        .contact-item i {
+            color: #ffc107;
+            margin-right: 10px;
+        }
+
+    .btn-maps {
+        background-color: #ffc107;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+        .btn-maps:hover {
+            background-color: #e0a800;
+            color: #000;
+        }
+</style>
+
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+    <div class="contact-card">
+        <h2 id="title">Contáctanos</h2>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+        <div class="contact-item">
+            <i class="fas fa-location-dot"></i>
+            Frente al Jardín de Niños Napoleón Quesada, San José, El Jardín
+        </div>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            8310 1474
+        </div>
+
+        <div class="contact-item">
+            <i class="fas fa-store"></i>
+            Compras en tienda, Entrega a domicilio
+        </div>
+
+        <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            Horario: Lunes a Viernes de 9 a.m.–5 p.m., Sabados de
+            9 a.m.–2 p.m.
+        </div>
+
+       
+
+        <div class="mt-4">
+            <a class="btn-maps" href="https://maps.app.goo.gl/Waz1mNE2TCRcBYiFA?g_st=iw" target="_blank">
+                📍 Ver en Google Maps
+            </a>
+        </div>
+    </div>
 </main>
